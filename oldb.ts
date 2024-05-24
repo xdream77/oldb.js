@@ -5,7 +5,6 @@ import type { OldbData } from './types';
 type OldbLogger = Pick<Console, 'info' | 'error' | 'warn'> 
 
 type OldbSettings = {
-    useTopics?: boolean
     topics?: string[],
     logger?: OldbLogger
     baseUrl?: string
