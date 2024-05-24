@@ -1,4 +1,4 @@
-# oldb_js
+# oldb-mqtt-beta.js
 
 To install dependencies:
 
