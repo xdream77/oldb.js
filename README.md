@@ -19,6 +19,7 @@ oldbClient.on('oldb_update', (msg: OldbData) => {
 ```Typescript
 const oldbClient = new OLDB({
      topics: ['bl1', 'bl2']
+})
 
 oldbClient.on('oldb_update', (msg: OldbData) => {
     // You only receive updates for the OLDB.leagueShortcut you choose
