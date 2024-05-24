@@ -42,6 +42,7 @@ export class OLDB{
         })
         
         this.client.on('error', this.logger.error)
+        this.client.on('offline', () => { this.logger.error('No MQTT broker found at this Url') })
         
         this.client.on('connect', () => {
             this.client.subscribe(this.topic, (err) => {
