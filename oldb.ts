@@ -12,7 +12,7 @@ type OldbSettings = {
     port?: string
 }
 
-type Events = { oldb_update: OldbData }
+type Events = { 'oldb:update': OldbData }
 
 export class OLDB{
     private baseUrl: string
@@ -57,7 +57,7 @@ export class OLDB{
             const league = msg.leagueShortcut
             
             if(this.topics.includes(league) || this.topic.length === 0){
-                this.emitter.emit('oldb_update', msg)
+                this.emitter.emit('oldb:update', msg)
             }
         });
     }
