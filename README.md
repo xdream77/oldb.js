@@ -10,7 +10,7 @@ The package is hosted on [JSR](https://jsr.io/@wgd/oldb) and not npm, so follow 
 ```Typescript
 const oldbClient = new OLDB()
 
-oldbClient.on('oldb_update', (msg: OldbData) => {
+oldbClient.on('oldb:update', (msg: OldbData) => {
     // your code here
 })
 ```
@@ -21,7 +21,7 @@ const oldbClient = new OLDB({
      topics: ['bl1', 'bl2']
 })
 
-oldbClient.on('oldb_update', (msg: OldbData) => {
+oldbClient.on('oldb:update', (msg: OldbData) => {
     // You only receive updates for the OLDB.leagueShortcut you choose
     // your code here
 })
