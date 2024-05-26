@@ -8,6 +8,8 @@ The package is hosted on [JSR](https://jsr.io/@wgd/oldb) and not npm, so follow 
 #### Examples
 **Connect to OLDB with current mqtt data and receive all updates**
 ```Typescript
+import { OLDB } from "@wgd/oldb";
+
 const oldbClient = new OLDB()
 
 oldbClient.on('oldb:update', (msg: OldbData) => {
@@ -15,10 +17,12 @@ oldbClient.on('oldb:update', (msg: OldbData) => {
 })
 ```
 
-**Sign to topics**
+**Sign to leagues**
 ```Typescript
+import { OLDB } from "@wgd/oldb";
+
 const oldbClient = new OLDB({
-     topics: ['bl1', 'bl2']
+     leagueShorts: ['bl1', 'bl2']
 })
 
 oldbClient.on('oldb:update', (msg: OldbData) => {
@@ -30,6 +34,8 @@ oldbClient.on('oldb:update', (msg: OldbData) => {
 **If mqtt data changes**
 you also can pass in connection infos, which will overwrite the standard.
 ```Typescript
+import { OLDB } from "@wgd/oldb";
+
 const oldbClient = new OLDB({
      baseUrl: settings.baseUrl,
      topic: settings.topic,
