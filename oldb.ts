@@ -4,8 +4,8 @@ import type { OldbData } from './types';
 
 type OldbLogger = Pick<Console, 'info' | 'error' | 'warn'> 
 
-type OldbSettings = {
-    topics?: string[],
+export type OldbSettings = {
+    leagueShorts?: string[],
     logger?: OldbLogger
     baseUrl?: string
     topic?: string
@@ -27,7 +27,7 @@ export class OLDB{
         this.baseUrl = settings.baseUrl || 'mqtts://broker.hivemq.com'
         this.topic = settings.topic || 'openligadb'
         this.port = settings.port || '8883'
-        this.leagueShorts = settings.topics || []
+        this.leagueShorts = settings.leagueShorts || []
         this.client = mqtt.connect(`${ this.baseUrl }:${ this.port }`);
         this.emitter = mitt<Events>()
         this.logger = settings.logger || console
