@@ -19,7 +19,7 @@ export class OLDB{
     private topic: string
     private port: string
     private client: mqtt.MqttClient
-    private topics: string[] = []
+    private leagueShorts: string[] = []
     private logger: OldbLogger = console
     private emitter: Emitter<Events> 
 
@@ -27,7 +27,7 @@ export class OLDB{
         this.baseUrl = settings.baseUrl || 'mqtts://broker.hivemq.com'
         this.topic = settings.topic || 'openligadb'
         this.port = settings.port || '8883'
-        this.topics = settings.topics || []
+        this.leagueShorts = settings.topics || []
         this.client = mqtt.connect(`${ this.baseUrl }:${ this.port }`);
         this.emitter = mitt<Events>()
         this.logger = settings.logger || console
@@ -53,10 +53,9 @@ export class OLDB{
         
         this.client.on('message', (_, message) => {
             const msg: OldbData = JSON.parse(message.toString());
-            this.logger.info(msg);
             const league = msg.leagueShortcut
             
-            if(this.topics.includes(league) || this.topic.length === 0){
+            if(this.leagueShorts.includes(league) || this.leagueShorts.length === 0){
                 this.emitter.emit('oldb:update', msg)
             }
         });
