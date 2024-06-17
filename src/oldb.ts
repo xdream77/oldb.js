@@ -1,6 +1,7 @@
 import mitt, { type Emitter } from 'mitt';
 import mqtt from "mqtt";
 import type { OldbData } from './types';
+import { useLogMessage } from './log-messages';
 
 type OldbLogger = Pick<Console, 'info' | 'error' | 'warn'> 
 
@@ -34,20 +35,18 @@ export class OLDB{
         this.setEvents()
     }
 
-    setEvents(): void{
+    private setEvents(): void{
         this.client.on('disconnect', () => {
-            this.logger.info('[OLDB] Disconnected')
-            this.logger.info('[OLDB] Come back soon')
+            this.logger.info(useLogMessage('disconnect'))
         })
         
         this.client.on('error', this.logger.error)
-        this.client.on('offline', () => { this.logger.error('No MQTT broker found at this Url') })
+        this.client.on('offline', () => { this.logger.error(useLogMessage('offline')) })
         
         this.client.on('connect', () => {
             this.client.subscribe(this.topic, (err) => {
                 if (err) { this.logger.error(err); }
-                this.logger.info('[OLDB] Connected'); 
-                this.logger.info('[OLDB] Waiting for Events');
+                this.logger.info(useLogMessage('connect')); 
             });
         });
         

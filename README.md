@@ -8,7 +8,7 @@ The package is hosted on [JSR](https://jsr.io/@wgd/oldb) and not npm, so follow 
 #### Examples
 **Connect to OLDB with current mqtt data and receive all updates**
 ```Typescript
-import { OLDB } from "@wgd/oldb";
+import { OLDB, type OldbData } from "@wgd/oldb";
 
 const oldbClient = new OLDB()
 
@@ -19,7 +19,7 @@ oldbClient.on('oldb:update', (msg: OldbData) => {
 
 **Sign to leagues**
 ```Typescript
-import { OLDB } from "@wgd/oldb";
+import { OLDB, type OldbData } from "@wgd/oldb";
 
 const oldbClient = new OLDB({
      leagueShorts: ['bl1', 'bl2']
