@@ -13,6 +13,7 @@ import { OLDB, type OldbData } from "@wgd/oldb";
 const oldbClient = new OLDB()
 
 oldbClient.on('oldb:update', (msg: OldbData) => {
+    // You receive ALL updates from OLDB
     // your code here
 })
 ```
