@@ -1,5 +1,5 @@
 # Small MQTT wrapper for OpenLigaDB 
-## BETA
+## Description
 This package connects to the mqtt channel of [openLigaDB](https://www.openligadb.de/) and automatically receives live updates. It provides you to specify topics you're interested in and only emits those data to your system.
 
 ### Installation
