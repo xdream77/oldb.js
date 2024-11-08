@@ -53,7 +53,6 @@ export class OLDB{
         this.client.on('message', (_, message) => {
             const msg: OldbData = JSON.parse(message.toString());
             const league = msg.leagueShortcut
-            console.log('Update received: ', msg)
             if(this.leagueShorts.includes(league) || this.leagueShorts.length === 0){
                 this.emitter.emit('oldb:update', msg)
             }
