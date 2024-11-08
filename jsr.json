@@ -2,4 +2,4 @@
     "name": "@wgd/oldb",
     "version": "0.2.6",
     "exports": "./src/index.ts"
-  }
+}

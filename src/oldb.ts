@@ -26,7 +26,7 @@ export class OLDB{
 
     constructor(settings: OldbSettings = {}){
         this.baseUrl = settings.baseUrl || 'mqtts://broker.hivemq.com'
-        this.topic = settings.topic || 'openligadb'
+        this.topic = settings.topic || 'openligadb/#'
         this.port = settings.port || '8883'
         this.leagueShorts = settings.leagueShorts || []
         this.client = mqtt.connect(`${ this.baseUrl }:${ this.port }`);
@@ -40,7 +40,7 @@ export class OLDB{
             this.logger.info(useLogMessage('disconnect'))
         })
         
-        this.client.on('error', this.logger.error)
+        this.client.on('error', (error) => { this.logger.error({ message: useLogMessage('error'), error }) })
         this.client.on('offline', () => { this.logger.error(useLogMessage('offline')) })
         
         this.client.on('connect', () => {
@@ -53,7 +53,7 @@ export class OLDB{
         this.client.on('message', (_, message) => {
             const msg: OldbData = JSON.parse(message.toString());
             const league = msg.leagueShortcut
-            
+            console.log('Update received: ', msg)
             if(this.leagueShorts.includes(league) || this.leagueShorts.length === 0){
                 this.emitter.emit('oldb:update', msg)
             }
