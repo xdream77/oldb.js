@@ -37,16 +37,28 @@ export class OLDB{
 
     private setEvents(): void{
         this.client.on('disconnect', () => {
-            this.logger.info(useLogMessage('disconnect'))
+            useLogMessage('disconnect').forEach(message => {
+                this.logger.info(message)
+            })
         })
         
-        this.client.on('error', (error) => { this.logger.error({ message: useLogMessage('error'), error }) })
-        this.client.on('offline', () => { this.logger.error(useLogMessage('offline')) })
+        this.client.on('error', (error) => { 
+            useLogMessage('error').forEach(message => {
+                this.logger.info({ message, error })
+            })
+        })
+        this.client.on('offline', () => { 
+            useLogMessage('offline').forEach(message => {
+                this.logger.info(message)
+            })
+        })
         
         this.client.on('connect', () => {
             this.client.subscribe(this.topic, (err) => {
                 if (err) { this.logger.error(err); }
-                this.logger.info(useLogMessage('connect')); 
+                useLogMessage('connect').forEach(msg => {
+                    this.logger.info(msg)
+                })
             });
         });
         

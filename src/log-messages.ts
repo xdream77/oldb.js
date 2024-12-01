@@ -9,7 +9,10 @@ const messages = {
     connect: [
         '[OLDB] Connected',
         '[OLDB] Waiting for Events'
+    ],
+    error: [
+        '[MQTT] Connection error: '
     ]
 }
 
-export const useLogMessage = (key: keyof typeof messages) => messages[key].join('\n')
+export const useLogMessage = (key: keyof typeof messages) => messages[key]
