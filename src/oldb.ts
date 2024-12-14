@@ -44,7 +44,7 @@ export class OLDB{
         
         this.client.on('error', (error) => { 
             useLogMessage('error').forEach(message => {
-                this.logger.info(`${message} ${error.message}`)
+                this.logger.error(`${message} ${error.message}`)
             })
         })
         this.client.on('offline', () => { 
